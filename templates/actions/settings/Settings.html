@@ -1,0 +1,41 @@
+<h1>Настройки</h1>
+<div class="fields form">
+    <form action="?plugin=orderstock&module=settings&action=save" method="post" id="plugins-settings-form">
+        <div class="field">
+            <div class="name">Статус</div>
+            <div class="value" style="">
+                <label>
+                    <select name="settings[status]">
+                        <option {if $settings.status == 1} selected="selected"{/if} value="1">Включен</option>
+                        <option {if $settings.status == 0} selected="selected"{/if} value="0">Выключен</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+        <div class="field">
+            <div class="name">
+                Статусы заказов
+                <br/>
+                <span class="hint">Статусы при которых можно выбирать склад при удалении товара</span>
+            </div>
+            <div class="value">
+                <label>
+                    {$checked_states = ','|explode:$settings.state_ids}
+                    {foreach $state_names as $key => $sn}
+                        <input type="checkbox" {if in_array($key, $checked_states)}checked="checked"{/if} name="settings[states][{$key}]" value="{$key}"/>
+                        {$sn}
+                        <br/>
+                    {/foreach}
+                </label>
+            </div>
+        </div>
+        <div class="field">
+            <div class="value submit">
+                <input type="submit" class="button green" value="Сохранить">
+                <span id="plugins-settings-form-status" style="display:none">
+                    <i style="vertical-align:middle" class="icon16 yes"></i> [`Saved`]
+                </span>
+            </div>
+        </div>
+    </form>
+</div>
