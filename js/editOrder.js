@@ -11,6 +11,7 @@ function editOrder(order_id, sklads) {
         if((action_id == 'delete' || action_id == 'restore') && !button.hasClass('wf-action')) {
             //Формируем select
             var select = '<select name="stock_id">';
+            select += '<option value="empty">Как указано в заказе</option>';
             $.each(sklads, function(index, value) {
                 select += '<option value="'+value.id+'">'+value.name+'</option>';
             });
